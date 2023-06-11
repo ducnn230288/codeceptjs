@@ -11,7 +11,7 @@ export const config: CodeceptJS.MainConfig = {
   output: './output',
   helpers: {
     Playwright: {
-      url: 'http://localhost',
+      url: 'http://localhost:4200/',
       show: true,
       windowSize: '1440x1200',
       browser: 'chromium',
@@ -34,13 +34,20 @@ export const config: CodeceptJS.MainConfig = {
   },
   gherkin: {
     features: './features/*.feature',
-    steps: glob.sync('./step_definitions/*.steps.ts'),
+    steps: glob.sync('./step_definitions/*.ts'),
   },
-  include: {},
+  include: {
+    I: './steps_file',
+  },
   plugins: {
     allure: {
       enabled: true,
       outputDir: './output',
+    },
+    stepByStepReport: {
+      enabled: true,
+      fullPageScreenshots: true,
+      screenshotsForAllureReport: true
     },
     autoDelay: {
       enabled: true,
