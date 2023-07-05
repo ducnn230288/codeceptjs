@@ -1,5 +1,5 @@
-const {setHeadlessWhen, setCommonPlugins} = require('@codeceptjs/configure');
-const glob = require('glob')
+const { setHeadlessWhen, setCommonPlugins } = require('@codeceptjs/configure');
+const glob = require('glob');
 // turn on headless mode when running with HEADLESS=true environment variable
 // export HEADLESS=true && npx codeceptjs run
 setHeadlessWhen(process.env.HEADLESS);
@@ -11,7 +11,7 @@ export const config: CodeceptJS.MainConfig = {
   output: './output',
   helpers: {
     Playwright: {
-      url: 'http://localhost:4200/',
+      url: 'http://dev1.geneat.vn:7802/',
       show: true,
       windowSize: '1440x1200',
       browser: 'chromium',
@@ -22,7 +22,7 @@ export const config: CodeceptJS.MainConfig = {
       waitForNavigation: 'load',
       ignoreHTTPSErrors: true,
       video: true,
-      keepVideoForPassedTests : true,
+      keepVideoForPassedTests: true,
       chromium: {
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
       },
@@ -42,12 +42,13 @@ export const config: CodeceptJS.MainConfig = {
   plugins: {
     allure: {
       enabled: true,
+      require: '@codeceptjs/allure-legacy',
       outputDir: './output',
     },
     stepByStepReport: {
       enabled: true,
       fullPageScreenshots: true,
-      screenshotsForAllureReport: true
+      screenshotsForAllureReport: true,
     },
     autoDelay: {
       enabled: true,
@@ -59,9 +60,9 @@ export const config: CodeceptJS.MainConfig = {
       retries: 8,
       minTimeout: 20000,
       maxTimeout: 50000,
-    }
+    },
   },
 
   name: 'CodeceptjsBDD',
-  fullPromiseBased: true
-}
+  fullPromiseBased: true,
+};

@@ -1,6 +1,6 @@
 Feature: Login
 
-  Rule: Happy paths
+#  Rule: Happy paths
     Background:
       Given User go to login page
 
